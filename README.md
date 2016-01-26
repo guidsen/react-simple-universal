@@ -98,5 +98,5 @@ app.listen(port, (err) => {
 });
 ```
 
-## Feedback or contribute?
-Do you have feedback or you want to contribute to make this proposal reality, please send me a message on twitter @guidsen [@guidsen](https://twitter.com/guidsen)
+## Feedback or want to contribute?
+Do you have feedback or do you want to contribute to make this proposal reality? Please send me a message on twitter @guidsen [@guidsen](https://twitter.com/guidsen) or make an issue.

@@ -5,9 +5,9 @@ In this document I'll propose an API to create modern universal apps.
 ## The Problem
 Universal rendering and routing in React combined with Redux is great. For big projects it can really save you ton of time.
 I've created a universal React app myself and if you ever tried it yourself, you know it's a PITA. 
-When I contributed to `universal-react-boilerplate` which is a boilerplate for creating universal React apps, there was so much code needed to bootstrap the universal React app, it felt like this should be easier.
+When I contributed to [`universal-react-boilerplate`](https://github.com/cloverfield-tools/universal-react-boilerplate) which is a boilerplate for creating universal React apps, there was so much code needed to bootstrap the universal React app, it felt like this should be easier.
 
-Below an example from `universal-react-boilerplate` to give you an idea of how complicated configuring this stuff yourself might look like.
+Below an example from [`universal-react-boilerplate`](https://github.com/cloverfield-tools/universal-react-boilerplate) to give you an idea of how complicated configuring this stuff yourself might look like.
 
 ```javascript
 import React from 'react';

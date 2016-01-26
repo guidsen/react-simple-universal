@@ -42,6 +42,12 @@ export default (req, res) => {
 
 This is only the universal routing part. There are some other files that need to be configured correctly to have a working app.
 
+## So what's included?
+- [Redux](https://github.com/rackt/redux)
+- [React Router](https://github.com/rackt/react-router)
+- [React Router Redux](https://github.com/rackt/react-router-redux) (former `redux-simple-router`) to sync between React Router and Redux
+- History
+
 ## My proposal
 
 I think that we only need three files. 
@@ -99,4 +105,4 @@ app.listen(port, (err) => {
 ```
 
 ## Feedback or want to contribute?
-Do you have feedback or do you want to contribute to make this proposal reality? Please send me a message on twitter @guidsen [@guidsen](https://twitter.com/guidsen) or make an issue.
+Do you have feedback or do you want to contribute to make this proposal reality? Please send me a message on twitter [@guidsen](https://twitter.com/guidsen) or make an issue.

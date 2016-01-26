@@ -44,16 +44,16 @@ This is only the universal routing part. There are some other files that need to
 
 ## My proposal
 
-I propose that we only need three files. 
+I think that we only need three files. 
 
 `create-app.js`:
 ```
-import universal from 'react-simple-universal/client';
+import universalClient from 'react-simple-universal/client';
 
 import routes from 'shared/routes';
 import reducers from 'shared/reducers';
 
-const createApp = ({ React }) => universal({
+const createApp = ({ React }) => universalClient({
   React, // The react instance to make sure we use the same instance throughout application.
   routes,
   reducers,

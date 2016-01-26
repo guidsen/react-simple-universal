@@ -9,7 +9,7 @@ When I contributed to `universal-react-boilerplate` which is a boilerplate for c
 
 Below an example from `universal-react-boilerplate` to give you an idea of how complicated configuring this stuff yourself might look like.
 
-```
+```javascript
 import React from 'react';
 import { match } from 'react-router';
 
@@ -47,7 +47,7 @@ This is only the universal routing part. There are some other files that need to
 I think that we only need three files. 
 
 `create-app.js`:
-```
+```javascript
 import universalClient from 'react-simple-universal/client';
 
 import routes from 'shared/routes';
@@ -64,7 +64,7 @@ const createApp = ({ React }) => universalClient({
 export default createApp;
 ```
 `client.js`:
-```
+```javascript
 import React from 'react';
 import createApp from 'bootstrap/createApp.js';
 
@@ -75,7 +75,7 @@ renderApp();
 ```
 
 `server.js`:
-```
+```javascript
 import universalServer from 'react-simple-universal/server';
 import express from 'express';
 import React from 'react';

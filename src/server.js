@@ -1,7 +1,7 @@
 import { match } from 'react-router';
 import render from './render';
 import renderLayout from './render-layout';
-import configureStore from '../configure-store';
+import configureStore from './configure-store';
 
 export default ({ routes, reducers, app }) => {
   const store = configureStore(reducers);

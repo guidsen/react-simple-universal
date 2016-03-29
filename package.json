@@ -1,6 +1,6 @@
 {
   "name": "react-simple-universal",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Creating universal apps with Redux and React is too hard. I want to make it easier. In this document I'll propose an API to create modern universal apps.",
   "main": "dist/index.js",
   "files": [
@@ -52,6 +52,8 @@
     "react": "0.14.7",
     "react-dom": "0.14.7",
     "react-redux": "4.4.1",
-    "react-router": "2.0.1"
+    "react-router": "2.0.1",
+    "redux": "3.3.1",
+    "redux-thunk": "2.0.1"
   }
 }

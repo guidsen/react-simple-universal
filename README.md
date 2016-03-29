@@ -50,7 +50,50 @@ This is only the routing part. There are some other files that need to be config
 
 ## Simple example
 
-We only need two files!
+`npm install --save react-simple-universal react react-dom react-router redux`  
+`npm install --save-dev babel-core babel-loader webpack-hot-middleware webpack babel-preset-es2015 babel-preset-react`  
+`npm install -g babel-cli` // So we can run `babel-node` globally for now  
+
+`routes/index.js`:
+```javascript
+// More at https://github.com/reactjs/react-router/blob/master/docs/guides/RouteConfiguration.md
+
+import React from 'react';
+import { Router, Route } from 'react-router';
+import App from './path/to/my/component';
+
+export default (browserHistory) => {
+  return (
+    <Router history={ browserHistory }>
+      <Route path="/" component={ App } />
+    </Router>
+  );
+};
+```
+
+`reducers/index.js`:
+```javascript
+// More at http://redux.js.org/docs/basics/Reducers.html
+
+const exampleInitialState = [
+  { id: 1, text: 'Book 1', count: 2 },
+  { id: 2, text: 'Book 2', count: 3 },
+  { id: 3, text: 'Book 3', count: 4 },
+];
+
+const books = (state = {
+  items: exampleInitialState,
+}, action) => {
+    return state;
+  }
+};
+
+const reducers = {
+  books
+};
+
+export default reducers;
+```
 
 `client.js`:
 ```javascript
@@ -82,6 +125,7 @@ const routes = createRoutes();
 const app = universal({ routes, reducers, app: expressDevServer(config) });
 ```
 
+Run `babel-node --presets es2015 --presets react devServer.js` to start your application.  
 **That's it!** You got a working server-side rendered React application now.
 
 ## Feedback or want to contribute?

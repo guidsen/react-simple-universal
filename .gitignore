@@ -1,3 +1,5 @@
 node_modules/
 .eslintcache
 dist/
+*.log
+.DS_Store

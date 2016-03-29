@@ -2,6 +2,8 @@
 Creating universal apps with Redux and React is too hard. I want to make it easier.
 In this document I'll propose an API to create modern universal apps.
 
+_**This library is not production ready yet, only for development. Will be production ready soon!**_
+
 ## The Problem
 Universal rendering and routing in React combined with Redux is great. For big projects it can really save you ton of time.
 I've created a universal React app myself and if you ever tried it yourself, you know it's a PITA. 
@@ -46,63 +48,38 @@ This is only the universal routing part. There are some other files that need to
 - [Redux](https://github.com/rackt/redux)
 - [React Router](https://github.com/rackt/react-router)
 - [React Router Redux](https://github.com/rackt/react-router-redux) (former `redux-simple-router`) to sync between React Router and Redux
-- History
 
-## My proposal
+## Simple example
 
-I think that we only need three files. 
+So we only need two files.
 
-`create-app.js`:
-```javascript
-import universalClient from 'react-simple-universal/client';
-
-import routes from 'shared/routes';
-import reducers from 'shared/reducers';
-
-const createApp = ({ React }) => universalClient({
-  React, // The react instance to make sure we use the same instance throughout application.
-  routes,
-  reducers,
-  elementId, // The element to render the application in. Defaults to 'root'.
-  renderLayout, // The layout to render. Defaults to a minimal template.
-});
-
-export default createApp;
-```
 `client.js`:
 ```javascript
-import React from 'react';
-import createApp from 'bootstrap/createApp.js';
+import { browserHistory } from 'react-router';
+import universal from 'react-simple-universal/client';
+import reducers from './path/to/my/reducers';
 
-const renderApp = createApp({ React });
+import createRoutes from 'routes';
+const routes = createRoutes(browserHistory);
 
-// Invoke this function to trigger the render.
-renderApp();
+const store = universal({ routes, reducers });
+
+store.dispatch({ type: 'YOUR_ACTION' });
 ```
 
 `server.js`:
 ```javascript
-import universalServer from 'react-simple-universal/server';
-import express from 'express';
-import React from 'react';
+import { expressDevServer } from 'react-simple-universal';
+import universal from 'react-simple-universal/server';
+import config from './path/to/my/webpack.config.dev';
+import createRoutes from './path/to/my/routes';
+import reducers from './path/to/my/reducers';
 
-import renderLayout from 'bootstrap/renderLayout.js';
-import createApp from 'bootstrap/createApp.js';
+const routes = createRoutes();
 
-// Wire up the a universal server with express.
-// This might be useful if we want to switch out express with other frameworks.
-const app = universalServer(express(), createApp({ React }));
-const port = process.env.APP_PORT || 3000;
-
-app.listen(port, (err) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
-
-  console.log(`Listening at http://localhost:${ port }`);
-});
+// This will contain an express server with webpack hot reloading
+const app = universal({ routes, reducers, app: expressDevServer(config) });
 ```
 
 ## Feedback or want to contribute?
-Do you have feedback or do you want to contribute to make this proposal reality? Please send me a message on twitter [@guidsen](https://twitter.com/guidsen) or make an issue.
+Do you have feedback or do you want to contribute? Please send me a message on twitter [@guidsen](https://twitter.com/guidsen) or make an issue.

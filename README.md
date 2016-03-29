@@ -1,6 +1,5 @@
 # React Simple Universal
-Creating universal apps with Redux and React is too hard. I want to make it easier.
-In this document I'll propose an API to create modern universal apps.
+Creating universal apps with Redux and React is too hard. I want to make it easier. Especially for people that are just starting out with creating Universal React Application.
 
 _**This library is not production ready yet, only for development. Will be production ready soon!**_
 
@@ -42,7 +41,7 @@ export default (req, res) => {
 };
 ```
 
-This is only the universal routing part. There are some other files that need to be configured correctly to have a working app.
+This is only the routing part. There are some other files that need to be configured correctly to have a working app.
 
 ## So what's included?
 - [Redux](https://github.com/rackt/redux)
@@ -51,7 +50,7 @@ This is only the universal routing part. There are some other files that need to
 
 ## Simple example
 
-So we only need two files.
+We only need two files!
 
 `client.js`:
 ```javascript
@@ -64,6 +63,7 @@ const routes = createRoutes(browserHistory);
 
 const store = universal({ routes, reducers });
 
+// You can dispatch actions directly from the server
 store.dispatch({ type: 'YOUR_ACTION' });
 ```
 
@@ -78,8 +78,11 @@ import reducers from './path/to/my/reducers';
 const routes = createRoutes();
 
 // This will contain an express server with webpack hot reloading
+// You can just add your own configuration here like: app.use('/', myMiddleware)
 const app = universal({ routes, reducers, app: expressDevServer(config) });
 ```
+
+**That's it!** You got a working server-side rendered React application now.
 
 ## Feedback or want to contribute?
 Do you have feedback or do you want to contribute? Please send me a message on twitter [@guidsen](https://twitter.com/guidsen) or make an issue.

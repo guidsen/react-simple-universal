@@ -1,6 +1,7 @@
 # React Simple Universal
-Creating universal apps with Redux and React is too hard. I want to make it easier.
-In this document I'll propose an API to create modern universal apps.
+Creating universal apps with Redux and React is too hard. I want to make it easier. Especially for people that are just starting out with creating Universal React Application.
+
+_**This library is not production ready yet, only for development. Will be production ready soon!**_
 
 ## The Problem
 Universal rendering and routing in React combined with Redux is great. For big projects it can really save you ton of time.
@@ -40,69 +41,93 @@ export default (req, res) => {
 };
 ```
 
-This is only the universal routing part. There are some other files that need to be configured correctly to have a working app.
+This is only the routing part. There are some other files that need to be configured correctly to have a working app.
 
 ## So what's included?
 - [Redux](https://github.com/rackt/redux)
 - [React Router](https://github.com/rackt/react-router)
 - [React Router Redux](https://github.com/rackt/react-router-redux) (former `redux-simple-router`) to sync between React Router and Redux
-- History
 
-## My proposal
+## Simple example
 
-I think that we only need three files. 
+`npm install --save react-simple-universal react react-dom react-router redux webpack`  
+`npm install --save-dev babel-core babel-loader webpack-hot-middleware babel-preset-es2015 babel-preset-react`  
+`npm install -g babel-cli` // So we can run `babel-node` globally for now  
+`echo '{ "presets": ["es2015", "react"] }' > .babelrc` // Will make sure `babel-node` uses the presets to transpile
 
-`create-app.js`:
+`routes/index.js`:
 ```javascript
-import universalClient from 'react-simple-universal/client';
+// More at https://github.com/reactjs/react-router/blob/master/docs/guides/RouteConfiguration.md
 
-import routes from 'shared/routes';
-import reducers from 'shared/reducers';
+import React from 'react';
+import { Router, Route } from 'react-router';
+import App from './path/to/my/component';
 
-const createApp = ({ React }) => universalClient({
-  React, // The react instance to make sure we use the same instance throughout application.
-  routes,
-  reducers,
-  elementId, // The element to render the application in. Defaults to 'root'.
-  renderLayout, // The layout to render. Defaults to a minimal template.
-});
-
-export default createApp;
+export default (browserHistory) => {
+  return (
+    <Router history={ browserHistory }>
+      <Route path="/" component={ App } />
+    </Router>
+  );
+};
 ```
+
+`reducers/index.js`:
+```javascript
+// More at http://redux.js.org/docs/basics/Reducers.html
+
+const exampleInitialState = [
+  { id: 1, text: 'Book 1', count: 2 },
+  { id: 2, text: 'Book 2', count: 3 },
+  { id: 3, text: 'Book 3', count: 4 },
+];
+
+const books = (state = {
+  items: exampleInitialState,
+}, action) => {
+    return state;
+  }
+};
+
+const reducers = {
+  books
+};
+
+export default reducers;
+```
+
 `client.js`:
 ```javascript
-import React from 'react';
-import createApp from 'bootstrap/createApp.js';
+import { browserHistory } from 'react-router';
+import universal from 'react-simple-universal/client';
+import reducers from './path/to/my/reducers';
 
-const renderApp = createApp({ React });
+import createRoutes from 'routes';
+const routes = createRoutes(browserHistory);
 
-// Invoke this function to trigger the render.
-renderApp();
+const store = universal({ routes, reducers });
+
+// You can dispatch actions directly from the server
+store.dispatch({ type: 'YOUR_ACTION' });
 ```
 
 `server.js`:
 ```javascript
-import universalServer from 'react-simple-universal/server';
-import express from 'express';
-import React from 'react';
+import { expressDevServer } from 'react-simple-universal';
+import universal from 'react-simple-universal/server';
+import config from './path/to/my/webpack.config.dev';
+import createRoutes from './path/to/my/routes';
+import reducers from './path/to/my/reducers';
 
-import renderLayout from 'bootstrap/renderLayout.js';
-import createApp from 'bootstrap/createApp.js';
+const routes = createRoutes();
 
-// Wire up the a universal server with express.
-// This might be useful if we want to switch out express with other frameworks.
-const app = universalServer(express(), createApp({ React }));
-const port = process.env.APP_PORT || 3000;
-
-app.listen(port, (err) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
-
-  console.log(`Listening at http://localhost:${ port }`);
-});
+// This will contain an express server with webpack hot reloading
+// You can just add your own configuration here like: app.use('/', myMiddleware)
+const app = universal({ routes, reducers, app: expressDevServer(config) });
 ```
 
+Run `babel-node --presets es2015 --presets react devServer.js` to start your application.  
+**That's it!** You got a working server-side rendered React application now.
+
 ## Feedback or want to contribute?
-Do you have feedback or do you want to contribute to make this proposal reality? Please send me a message on twitter [@guidsen](https://twitter.com/guidsen) or make an issue.
+Do you have feedback or do you want to contribute? Please send me a message on twitter [@guidsen](https://twitter.com/guidsen) or make an issue.

@@ -50,9 +50,10 @@ This is only the routing part. There are some other files that need to be config
 
 ## Simple example
 
-`npm install --save react-simple-universal react react-dom react-router redux`  
-`npm install --save-dev babel-core babel-loader webpack-hot-middleware webpack babel-preset-es2015 babel-preset-react`  
+`npm install --save react-simple-universal react react-dom react-router redux webpack`  
+`npm install --save-dev babel-core babel-loader webpack-hot-middleware babel-preset-es2015 babel-preset-react`  
 `npm install -g babel-cli` // So we can run `babel-node` globally for now  
+`echo '{ "presets": ["es2015", "react"] }' > .babelrc` // Will make sure `babel-node` uses the presets to transpile
 
 `routes/index.js`:
 ```javascript

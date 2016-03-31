@@ -126,7 +126,7 @@ const routes = createRoutes();
 const app = universal({ routes, reducers, app: expressDevServer(config) });
 ```
 
-Run `babel-node --presets es2015 --presets react devServer.js` to start your application.  
+Run `babel-node --presets es2015 --presets react server.js` to start your application.  
 **That's it!** You got a working server-side rendered React application now.
 
 ## Feedback or want to contribute?

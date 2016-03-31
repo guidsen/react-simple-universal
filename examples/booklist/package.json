@@ -1,7 +1,7 @@
 {
-  "name": "universal-react-boilerplate",
-  "version": "3.0.0",
-  "description": "A new Webpack boilerplate with hot reloading React components, and error handling on module and component level.",
+  "name": "react-simple-universal-booklist-example",
+  "version": "0.0.0",
+  "description": "React Simple Universal booklist example",
   "scripts": {
     "clean": "rimraf build",
     "build:webpack": "webpack --config webpack.config.js",
@@ -9,35 +9,15 @@
     "start": "NODE_PATH=source babel-node devServer.js",
     "lint": "eslint source"
   },
-  "engines": {
-    "node": ">=4"
-  },
-  "os": [
-    "darwin",
-    "linux"
-  ],
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack",
-    "babel",
-    "react-transform"
-  ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:ericelliott/isomorphic-express-boilerplate.git"
+    "url": "https://github.com/guidsen/react-simple-universal.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ericelliott/isomorphic-express-boilerplate/issues"
+    "url": "https://github.com/guidsen/react-simple-universal/issues"
   },
-  "homepage": "https://github.com/ericelliott/isomorphic-express-boilerplate",
+  "homepage": "https://github.com/guidsen/react-simple-universal",
   "dependencies": {
     "react-simple-universal": "0.4.0",
     "react": "0.14.8",

@@ -19,9 +19,11 @@ const createServer = (config, port, host) => {
 
   app.use(require('webpack-hot-middleware')(compiler));
 
-  app.listen(serverPort, serverHost, (err) => err ?
-    console.error(err) :
-    console.log(`Listening at http://${serverHost}:${serverPort}`));
+  app.listen(serverPort, serverHost, (err) => {
+    if (err) console.error(err);
+
+    console.log(`Listening at http://${serverHost}:${serverPort}`);
+  });
 
   return app;
 };

@@ -1,6 +1,6 @@
 {
   "extends": "airbnb",
   "rules": {
-      "arrow-body-style": ["off"]
+    "arrow-body-style": ["off"]
   }
 }

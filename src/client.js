@@ -1,12 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { browserHistory } from 'react-router';
 import configureStore from './configure-store';
+import { syncHistoryWithStore } from 'react-router-redux'
 
-export default ({ routes, reducers }) => {
+export default ({ createRoutes, reducers }) => {
   const store = configureStore(reducers);
+  const history = syncHistoryWithStore(browserHistory, store)
+  const routes = createRoutes(history);
 
-  ReactDOM.render(
+  render(
     <Provider store={store}>
       { routes }
     </Provider>,

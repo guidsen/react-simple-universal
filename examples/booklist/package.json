@@ -1,0 +1,43 @@
+{
+  "name": "react-simple-universal-booklist-example",
+  "version": "0.0.0",
+  "description": "React Simple Universal booklist example",
+  "scripts": {
+    "clean": "rimraf build",
+    "build:webpack": "webpack --config webpack.config.js",
+    "build": "npm run clean && npm run build:webpack",
+    "start": "cross-env NODE_PATH=source babel-node devServer.js",
+    "lint": "eslint source"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guidsen/react-simple-universal.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/guidsen/react-simple-universal/issues"
+  },
+  "homepage": "https://github.com/guidsen/react-simple-universal",
+  "dependencies": {
+    "react-simple-universal": "0.4.0",
+    "react": "0.14.8",
+    "react-dom": "0.14.8",
+    "react-router": "2.0.1",
+    "redux": "3.3.1",
+    "redux-thunk": "2.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "6.6.5",
+    "babel-core": "6.7.4",
+    "babel-loader": "6.2.4",
+    "babel-preset-es2015": "6.6.0",
+    "babel-preset-react": "6.5.0",
+    "cross-env": "1.0.7",
+    "eslint": "2.4.0",
+    "eslint-config-airbnb": "6.2.0",
+    "eslint-plugin-react": "4.2.2",
+    "rimraf": "2.5.2",
+    "webpack": "1.12.14",
+    "webpack-hot-middleware": "2.10.0"
+  }
+}

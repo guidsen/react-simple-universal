@@ -1,5 +1,5 @@
-node_modules/
 .eslintcache
-dist/
-*.log
 .DS_Store
+*.log
+node_modules
+dist

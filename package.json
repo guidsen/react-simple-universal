@@ -11,8 +11,7 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "lint": "eslint src/",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src examples",
     "check:src": "npm run lint",
     "build": "babel src --out-dir dist",
     "prepublish": "npm run clean && npm run build"
@@ -42,8 +41,8 @@
     "babel-preset-react": "6.5.0",
     "cross-env": "1.0.7",
     "eslint": "2.4.0",
-    "eslint-config-airbnb": "6.1.0",
-    "eslint-plugin-react": "4.2.1",
+    "eslint-config-airbnb": "6.2.0",
+    "eslint-plugin-react": "4.2.3",
     "rimraf": "2.5.2"
   },
   "dependencies": {

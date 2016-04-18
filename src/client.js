@@ -10,12 +10,20 @@ export default ({ createRoutes, reducers }) => {
   const history = syncHistoryWithStore(browserHistory, store);
   const routes = createRoutes(history);
 
-  render(
+  const app = render(
     <Provider store={store}>
       { routes }
     </Provider>,
     document.getElementById('root')
   );
 
-  return store;
+  if (module.hot) {
+    require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
+      getRootInstances() {
+        return [app];
+      },
+    });
+  }
+
+  return { store, app };
 };

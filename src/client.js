@@ -25,5 +25,5 @@ export default ({ createRoutes, reducers }) => {
     });
   }
 
-  return { store, app };
+  return store;
 };

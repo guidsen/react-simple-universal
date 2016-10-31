@@ -100,12 +100,10 @@ export default reducers;
 ```javascript
 import { browserHistory } from 'react-router';
 import universal from 'react-simple-universal/client';
+import createRoutes from './path/to/my/routes';
 import reducers from './path/to/my/reducers';
 
-import createRoutes from 'routes';
-const routes = createRoutes(browserHistory);
-
-const store = universal({ routes, reducers });
+const store = universal({ createRoutes, reducers });
 
 // You can dispatch actions directly from the server
 store.dispatch({ type: 'YOUR_ACTION' });

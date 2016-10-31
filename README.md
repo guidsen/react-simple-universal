@@ -76,17 +76,16 @@ export default (browserHistory) => {
 ```javascript
 // More at http://redux.js.org/docs/basics/Reducers.html
 
-const exampleInitialState = [
-  { id: 1, text: 'Book 1', count: 2 },
-  { id: 2, text: 'Book 2', count: 3 },
-  { id: 3, text: 'Book 3', count: 4 },
-];
+const exampleInitialState = {
+  books: [
+    { id: 1, text: 'Book 1', count: 2 },
+    { id: 2, text: 'Book 2', count: 3 },
+    { id: 3, text: 'Book 3', count: 4 },
+  ],
+};
 
-const books = (state = {
-  items: exampleInitialState,
-}, action) => {
-    return state;
-  }
+const books = (state = exampleInitialState, action) => {
+  return state;
 };
 
 const reducers = {
